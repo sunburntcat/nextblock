@@ -1,0 +1,47 @@
+Next Block
+
+This document describes an idea that employs high frequency trading to make EOS decentralized exchange markets more efficient.
+
+The Outline:
+
+Facilitate risk-adjusted arbitrage trading between smaller decentralized exchanges and exchanges with more liquidity. 
+
+An EOS decentralized exchange will rely on EOS actions issued by various parties around the world to act the middle layer between the user and their own order settlement on their website. This is currently in the form of a memo being included with an eosio.token transfer to the exchange. Other methods could arise over time.
+
+With a regulatory environment likely to be unfavorable in China, the government may act by blocking the IPs of various exchanges. The EOS trading platform survives, because block producers are global and local tokens are locked in smart contract. Proliferation of small EOS exchanges in China makes for arbitrage opportunity between illiquid exchanges and more stable/liquid ones outside the country.
+
+High frequency trading involves accessing market data as quickly as possible. Unlike the NYSE, there is no single point of entry/exit for market orders. The cost of establishing infrastructure to systematically cripple slower traders by racing against and prohibiting incoming trades is extremely high. Furthermore, it’s immoral and potentially illegal. Finally, it simply cannot be done with the EOS network, due to the global distribution of 21 block producers. 
+
+Instead, the idea is to be the first actor to fill an arbitrage-flagged market order that is already on it’s way to being processed by the exchange.
+
+Here is an example of a successful arbitrage trade:
+
+1)	While on low-liquidity exchange DEXEOS, Trader 1 initiates a buy order that is above the sell price on highly-liquid exchange NEWDEX.
+2)	Trader 1’s trade is instantly broadcast to the EOS network and gets processed at Block 100.
+3)	Trader Nick has been listening for events like these on the blockchain for many different assets found on DEXEOS. He initiates his own sell order to fill Trader 1’s order and simultaneously issues a buy order to NEWDEX to complete the arbitrage. He hopes to do this as close to block 101 as possible.
+4)	Exchange DEXEOS processes Trader 1’s order at Block 100, which immediately gets filled by Trader Nick’s order at Block 101.
+5)	Trader Nick takes a small profit and Trader 1 gets to see his request processed immediately.
+
+
+Future Scalability:
+
+The following steps to achieve “Next Block” success should be taken in this order, as competition is bound to escalate.
+
+1)	Listen to a single full node every second for actions sent to the accounts of one or two illiquid exchanges. API calls to get the orderbook of the liquid exchange can be far less frequent (ie. every 5 seconds, but faster for assets with high volume).
+2)	Use the producer order list to only attempt arbitrage when the producer is producing to cut down on response time. Deploy AWS instances physically close to different block producers to achieve minimal latency. Examples would include an EC2 instance in Montreal for EOS Canada or an EC2 instance in Sao Paulo for EOSRio.
+3)	Possibly use eosio’s demux js to deploy a smart contract that watches the accounts and creates a responding action directly through node.js without having to use a producer’s API.
+4)	Deploy bare metal servers if AWS privacy is compromised
+
+No risk of financial loss due to exchanges being taken offline, since tokens reside on the exchange for less than a second. An offline account exchange should be flagged immediately, so that the algorithm doesn’t send funds to it. 
+
+Small financial risk is taken by holding assets other than EOS when facilitating the “initial sell” side of the arbitrage. Risk is simply the natural appreciate or depreciation of the token’s price.
+
+No risk of involvement with Chinese government. All transactions remain in North and South America.
+
+EOS RAM and CPU resources needed to allow the use of Next Block account with various exchanges and types of tokens.
+
+Furthermore, scaling the project requires the following to be done by Employees:
+1)	Discovery of new illiquid EOS decentralized exchanges, likely in China
+2)	Matching the necessary assets and construction of transaction memos
+3)	Paying close attention to changes in the block producers’ rankings and hardware, while recognizing that trust is the biggest long-term success indicator of a producer exposed to a liquid democracy ☺ 
+
